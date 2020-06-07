@@ -1,3 +1,5 @@
 rootProject.name = 'tacos'
 include 'configServer'
+include 'domain'
+include 'web'
 
