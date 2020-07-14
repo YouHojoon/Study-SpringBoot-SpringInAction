@@ -22,7 +22,15 @@ import javax.validation.Valid;
 @SessionAttributes("order")
 @RequiredArgsConstructor
 public class OrderController {
+
     private final OrderService orderservice;
+
+    @GetMapping
+    public String ordersForUser(@AuthenticationPrincipal User user, Model model){
+        model.addAttribute("orders", orderservice.findByUserOrderByPlacedAtDesc(user));
+        return "orderList";
+    }
+
     @GetMapping("/current")
     public String orderForm(@AuthenticationPrincipal User user, @ModelAttribute Order order){
         if(order.getDeliveryCity()==null)

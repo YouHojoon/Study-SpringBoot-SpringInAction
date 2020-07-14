@@ -1,0 +1,20 @@
+server:
+  port: 8081
+spring:
+  application:
+    name: rest
+  datasource:
+    url: jdbc:mysql://localhost:3306/test
+    username: study
+    password: "{cipher}24eea66097e5f86df860fd640186d24ba13737892dbae665ba87b2ecb29c8791"
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "env, refresh"
