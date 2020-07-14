@@ -64,6 +64,10 @@ public class Order implements Serializable {
     @OneToMany
     private List<Taco> tacos=new ArrayList<>();
 
+    @ManyToOne
+    @JoinColumn(name = "UID")
+    private User user;
+
     public void addTaco(Taco taco){
         this.tacos.add(taco);
     }
