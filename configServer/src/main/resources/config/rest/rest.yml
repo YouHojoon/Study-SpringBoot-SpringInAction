@@ -13,6 +13,13 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: update
+  kafka:
+    template:
+      default-topic: tacocloud.orders.topic
+    bootstrap-servers:
+      - localhost:9092
+    producer:
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
 management:
   endpoints:
     web:
