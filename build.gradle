@@ -31,10 +31,6 @@ allprojects {
             mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
         }
     }
-    dependencies {
-        implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
-    }
-
 }
 
 subprojects{
@@ -62,6 +58,14 @@ project(':domain'){
     }
 }
 project(':web'){
+    dependencies {
+        implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+        implementation 'org.springframework.boot:spring-boot-starter-hateoas'
+        implementation 'org.springframework.boot:spring-boot-starter-web'
+        implementation project(path: ':domain', configuration: 'default')
+    }
+}
+project(':rest'){
     dependencies {
         implementation 'org.springframework.boot:spring-boot-starter-hateoas'
         implementation 'org.springframework.boot:spring-boot-starter-web'

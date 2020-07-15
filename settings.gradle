@@ -3,4 +3,6 @@ include 'configServer'
 include 'domain'
 include 'web'
 include 'authServer'
+include 'authServer'
+include 'rest'
 
