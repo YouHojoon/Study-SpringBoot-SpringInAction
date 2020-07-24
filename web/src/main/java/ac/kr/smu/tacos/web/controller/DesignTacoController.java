@@ -8,6 +8,7 @@ import ac.kr.smu.tacos.repository.IngredientRepository;
 import ac.kr.smu.tacos.repository.TacoRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -60,6 +61,7 @@ public class DesignTacoController {
 
         return "redirect:/orders/current";
     }
+
     private List<Ingredient> filterByType(List<Ingredient> ingredients, Type type){
         return ingredients.stream().filter(i -> i.getType().equals(type)).collect(Collectors.toList());
     }

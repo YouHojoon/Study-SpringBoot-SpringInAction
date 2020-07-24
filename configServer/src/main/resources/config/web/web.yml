@@ -11,6 +11,14 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: update
+  kafka:
+    bootstrap-servers:
+      - localhost:9092
+    consumer:
+      group-id: tacocloud_kitchen
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring.json.trusted.packages: ac.kr.smu.tacos.domain
 management:
   endpoints:
     web:
