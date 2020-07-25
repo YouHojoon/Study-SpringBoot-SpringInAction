@@ -38,11 +38,13 @@ subprojects{
         implementation 'org.springframework.boot:spring-boot-starter-actuator'
         implementation 'org.springframework.cloud:spring-cloud-starter-config'
         compileOnly 'org.projectlombok:lombok'
-        runtimeOnly 'mysql:mysql-connector-java'
         annotationProcessor 'org.projectlombok:lombok'
         testImplementation('org.springframework.boot:spring-boot-starter-test') {
             exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
         }
+    }
+    test {
+        useJUnitPlatform()
     }
 }
 project(':configServer'){
@@ -59,6 +61,7 @@ project(':domain'){
 }
 project(':web'){
     dependencies {
+        runtimeOnly 'mysql:mysql-connector-java'
         implementation 'org.springframework.kafka:spring-kafka:2.5.3.RELEASE'
         implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
         implementation 'org.springframework.boot:spring-boot-starter-hateoas'
@@ -68,9 +71,17 @@ project(':web'){
 }
 project(':rest'){
     dependencies {
+        runtimeOnly 'mysql:mysql-connector-java'
         implementation 'org.springframework.boot:spring-boot-starter-hateoas'
         implementation 'org.springframework.boot:spring-boot-starter-web'
         implementation project(path: ':messaging', configuration: 'default')
+    }
+}
+project(':reactive'){
+    dependencies {
+        implementation 'org.springframework.boot:spring-boot-starter-data-mongodb-reactive'
+        implementation 'org.springframework.boot:spring-boot-starter-security'
+        implementation 'org.springframework.boot:spring-boot-starter-webflux'
     }
 }
 project(':messaging'){
@@ -79,7 +90,4 @@ project(':messaging'){
         implementation 'org.springframework.boot:spring-boot-starter-amqp'
         implementation project(path: ':domain', configuration: 'default')
     }
-}
-test {
-    useJUnitPlatform()
 }
