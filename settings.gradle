@@ -6,4 +6,5 @@ include 'authServer'
 include 'authServer'
 include 'rest'
 include 'messaging'
+include 'reactive'
 
